@@ -16,7 +16,7 @@ export default function Navbar() {
         <header className="border-b border-border bg-background sticky top-0 z-50 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <nav className="navbar px-0">
-
+                    
                     <div className="navbar-start">
                         <div className="dropdown lg:hidden">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -35,10 +35,10 @@ export default function Navbar() {
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-lg font-bold tracking-tight leading-none text-foreground font-heading">
-                                    UnityPulse
+                                UnityPulse
                                 </span>
                                 <span className="text-[10px] tracking-wider text-muted-foreground font-semibold uppercase mt-0.5">
-                                    Social Impact
+                                Social Impact
                                 </span>
                             </div>
                         </Link>
@@ -46,9 +46,6 @@ export default function Navbar() {
 
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1 font-medium gap-1">
-                            <li>
-                                <Link href="/" className="hover:text-primary transition-colors">Home</Link>
-                            </li>
                             <li>
                                 <Link href="/upcoming-events" className="hover:text-primary transition-colors">Upcoming Events</Link>
                             </li>

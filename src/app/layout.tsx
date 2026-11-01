@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 
 const openSans = Open_Sans({
     variable: "--font-open-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
             <body className="min-h-full flex flex-col bg-background text-foreground">
                 <Navbar />
                 <main className="flex-1">{children}</main>
+                <Footer/>
             </body>
         </html>
     );
