@@ -9,18 +9,22 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useSession } from "@/lib/auth-client"; 
 
 export default function CreateEventPage() {
     const router = useRouter();
     const today = new Date().toISOString().split("T")[0];
 
+    const { data: session } = useSession();
+    const user = session?.user;
+
     const handleCreateEvent = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
-        const eventData = Object.fromEntries(formData.entries());
+        const formEntries = Object.fromEntries(formData.entries());
 
-        const selectedDate = new Date(eventData.date as string);
+        const selectedDate = new Date(formEntries.date as string);
         const currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0); 
 
@@ -28,6 +32,13 @@ export default function CreateEventPage() {
             toast.error("Event date cannot be in the past!");
             return;
         }
+
+        const eventData = {
+            ...formEntries,
+            userName: user?.name || "",
+            userEmail: user?.email || "",
+            userId: user?.id || "",
+        };
 
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/create-event`, {
@@ -59,14 +70,14 @@ export default function CreateEventPage() {
                 <CardHeader className="flex flex-row items-center justify-between border-b border-border pb-5 mb-5">
                     <div>
                         <CardTitle className="text-2xl sm:text-3xl font-extrabold tracking-tight font-heading">
-                            Create a New Event 
+                            Create a New Event
                         </CardTitle>
                         <CardDescription className="text-sm text-muted-foreground mt-1">
                             Fill in the details below to publish your social impact event.
                         </CardDescription>
                     </div>
                     <Link href="/">
-                        <Button variant="ghost" size="sm" className="gap-2">
+                        <Button variant="ghost" size="sm" className="gap-2 cursor-pointer">
                             <ArrowLeft className="w-4 h-4" /> Back
                         </Button>
                     </Link>
@@ -119,7 +130,7 @@ export default function CreateEventPage() {
                                     id="date"
                                     type="date"
                                     name="date"
-                                    min={today} 
+                                    min={today}
                                     required
                                     className="h-11 rounded-xl bg-background"
                                 />
@@ -168,7 +179,7 @@ export default function CreateEventPage() {
                         </div>
 
                         <div className="pt-4">
-                            <Button type="submit" size="lg" className="w-full h-11 rounded-xl font-semibold text-base shadow-md">
+                            <Button type="submit" size="lg" className="w-full h-11 rounded-xl font-semibold text-base shadow-md cursor-pointer">
                                 Publish Event
                             </Button>
                         </div>

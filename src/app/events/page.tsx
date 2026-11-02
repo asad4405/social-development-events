@@ -52,7 +52,7 @@ export default async function EventsPage({ searchParams }: PageProps) {
                             Explore upcoming community and social impact events happening soon.
                         </p>
                     </div>
-                    <Link href="/create-event">
+                    <Link href="/events/create-event">
                         <Button className="rounded-xl gap-2 font-semibold shadow-md">
                             <Plus className="w-4 h-4" /> Create Event
                         </Button>

@@ -59,7 +59,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
                                 className="object-cover w-full h-full"
                             />
                         )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent"></div>
+                        <div className="absolute inset-0 from-background/90 via-background/30 to-transparent"></div>
 
                         <span className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10 bg-primary/90 backdrop-blur-md text-primary-foreground text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-md">
                             {event.category}
@@ -99,7 +99,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
                         <Button variant="outline" size="icon" className="rounded-xl h-11 w-11 shrink-0">
                             <Share2 className="w-4 h-4" />
                         </Button>
-                        <Button className="flex-1 sm:flex-initial rounded-xl h-11 px-6 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold gap-2 shadow-md">
+                        <Button className="flex-1 sm:flex-initial rounded-xl h-11 px-6 bg-primary hover:bg-primary text-white font-semibold gap-2 shadow-md">
                             <CheckCircle2 className="w-4 h-4" /> Joined (Click to Leave)
                         </Button>
                     </div>
