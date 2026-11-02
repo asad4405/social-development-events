@@ -1,7 +1,7 @@
 import Link from "next/link";
 import EventCard from "@/components/events/EventCard";
 import EventFilters from "@/components/events/EventFilter";
-import { EventType } from "@/app/types/events";
+import { EventType } from "@/types/events";
 import { CalendarDays, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -42,11 +42,11 @@ export default async function EventsPage({ searchParams }: PageProps) {
     return (
         <div className="min-h-screen bg-background py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
-                
+
                 <div className="border-b border-border pb-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
                         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading text-foreground">
-                            Upcoming Events 
+                            Upcoming Events
                         </h1>
                         <p className="text-sm text-muted-foreground mt-1">
                             Explore upcoming community and social impact events happening soon.

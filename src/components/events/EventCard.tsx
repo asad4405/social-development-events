@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { EventType } from "@/app/types/events";
+import { EventType } from "@/types/events";
 
 interface EventCardProps {
     event: EventType;
