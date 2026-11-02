@@ -21,7 +21,7 @@ export default function Gallery() {
             location: "Old Dhaka",
         },
         {
-            src: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb0?auto=format&fit=crop&w=800&q=80",
+            src: "https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=800&q=80",
             title: "Clean Water Drive",
             location: "Gazipur",
         },
@@ -31,7 +31,7 @@ export default function Gallery() {
             location: "Dhanmondi, Dhaka",
         },
         {
-            src: "https://images.unsplash.com/photo-1617870978848-18e0018f4384?auto=format&fit=crop&w=800&q=80",
+            src: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=800&q=80",
             title: "Neighborhood Clean-up",
             location: "Uttara, Dhaka",
         },

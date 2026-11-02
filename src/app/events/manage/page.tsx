@@ -66,6 +66,7 @@ export default async function ManageEventsPage() {
                         </Button>
                     </Link>
                 </div>
+                <hr className="border-border" />
 
                 {myEvents.length === 0 ? (
                     <div className="bg-card border border-border rounded-3xl p-12 text-center space-y-4 shadow-sm">

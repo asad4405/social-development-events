@@ -50,6 +50,7 @@ export default async function JoinedEventsPage() {
                         Here are all the social initiatives and events you have committed to volunteer for.
                     </p>
                 </div>
+                <hr className="border-border" />
 
                 {joinedEvents.length === 0 ? (
                     <div className="bg-card border border-border rounded-3xl p-12 text-center space-y-4 shadow-sm">

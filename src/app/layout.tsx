@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 
 const openSans = Open_Sans({
     variable: "--font-open-sans",
@@ -47,7 +48,9 @@ export default function RootLayout({
             <body className="min-h-full flex flex-col bg-background text-foreground">
                 <Navbar />
                 <main className="flex-1">{children}</main>
-                <Footer/>
+                <Suspense fallback={null}>
+                    <Footer />
+                </Suspense>
                 <Toaster position="bottom-right" richColors />
             </body>
         </html>

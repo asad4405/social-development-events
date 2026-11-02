@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Heart, Mail, Phone, MapPin, HandHeart } from "lucide-react";
 
 export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
     return (
         <footer className="bg-card text-card-foreground border-t border-border pt-16 pb-8">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -153,7 +155,7 @@ export default function Footer() {
                 </div>
 
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-muted-foreground">
-                    <p>© {new Date().getFullYear()} UnityPulse. All rights reserved.</p>
+                    <p>© {currentYear} UnityPulse. All rights reserved.</p>
                     <div className="flex items-center gap-1">
                         <span>Built with</span>
                         <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />

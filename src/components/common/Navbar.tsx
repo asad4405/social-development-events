@@ -15,14 +15,20 @@ export default function Navbar() {
 
     const handleSignOut = async () => {
         await signOut({
-        fetchOptions: {
-            onSuccess: () => {
-            toast.success("Successfully logged out!");
-            router.push("/login");
-            router.refresh();
+            fetchOptions: {
+                onSuccess: () => {
+                    toast.success("Successfully logged out!");
+                    router.push("/login");
+                    router.refresh();
+                },
             },
-        },
         });
+    };
+
+    const closeDropdown = () => {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
     };
 
     return (
@@ -38,7 +44,7 @@ export default function Navbar() {
                                 </svg>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-card text-card-foreground rounded-box w-52 border border-border">
-                                <li><Link href="/events">Upcoming Events</Link></li>
+                                <li><Link href="/events" onClick={closeDropdown}>Upcoming Events</Link></li>
                             </ul>
                         </div>
 
@@ -102,24 +108,27 @@ export default function Navbar() {
                                         <span className="text-xs text-muted-foreground block truncate">{user.email}</span>
                                     </li>
                                     <li>
-                                        <Link href="/events/create" className="flex items-center gap-2 py-2">
+                                        <Link href="/events/create" onClick={closeDropdown} className="flex items-center gap-2 py-2">
                                             <PlusCircle className="w-4 h-4 text-primary" /> Create Event
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/events/manage" className="flex items-center gap-2 py-2">
+                                        <Link href="/events/manage" onClick={closeDropdown} className="flex items-center gap-2 py-2">
                                             <Settings className="w-4 h-4 text-primary" /> Manage Events
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/events/joined" className="flex items-center gap-2 py-2">
+                                        <Link href="/events/joined" onClick={closeDropdown} className="flex items-center gap-2 py-2">
                                             <Calendar className="w-4 h-4 text-primary" /> Joined Events
                                         </Link>
                                     </li>
                                     <div className="divider my-1"></div>
                                     <li>
                                         <button
-                                            onClick={handleSignOut}
+                                            onClick={() => {
+                                                closeDropdown();
+                                                handleSignOut();
+                                            }}
                                             className="flex items-center gap-2 py-2 text-destructive hover:bg-destructive/10"
                                         >
                                             <LogOut className="w-4 h-4" /> Logout
