@@ -3,6 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import { Toaster } from "sonner";
 
 const openSans = Open_Sans({
     variable: "--font-open-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
                 <Navbar />
                 <main className="flex-1">{children}</main>
                 <Footer/>
+                <Toaster position="bottom-right" richColors />
             </body>
         </html>
     );

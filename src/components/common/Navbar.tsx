@@ -2,14 +2,27 @@
 
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import { PlusCircle, Calendar, Settings, LogOut, LogIn, HandHeart } from "lucide-react";
+import { PlusCircle, Calendar, Settings, LogOut, LogIn, HandHeart, User } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { signOut, useSession } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 export default function Navbar() {
-    const user = {
-        name: "Md. Asaduzzaman",
-        email: "123mdasaduzzaman@gmail.com",
-        image: "https://avatars.githubusercontent.com/u/117895290",
+    const router = useRouter();
+    const { data: session } = useSession();
+    const user = session?.user;
+
+    const handleSignOut = async () => {
+        await signOut({
+        fetchOptions: {
+            onSuccess: () => {
+            toast.success("Successfully logged out!");
+            router.push("/login");
+            router.refresh();
+            },
+        },
+        });
     };
 
     return (
@@ -64,13 +77,19 @@ export default function Navbar() {
                                     title={user.name}
                                 >
                                     <div className="w-10 h-10 rounded-full border border-border overflow-hidden relative">
-                                        <Image
-                                            src={user.image}
-                                            alt={user.name}
-                                            width={40}
-                                            height={40}
-                                            className="rounded-full object-cover"
-                                        />
+                                        {user.image ? (
+                                            <Image
+                                                src={user.image}
+                                                alt={user.name || "User"}
+                                                width={40}
+                                                height={40}
+                                                className="rounded-full object-cover"
+                                            />
+                                        ) : (
+                                            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                                                <User className="w-5 h-5 text-muted-foreground" />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
@@ -100,6 +119,7 @@ export default function Navbar() {
                                     <div className="divider my-1"></div>
                                     <li>
                                         <button
+                                            onClick={handleSignOut}
                                             className="flex items-center gap-2 py-2 text-destructive hover:bg-destructive/10"
                                         >
                                             <LogOut className="w-4 h-4" /> Logout
