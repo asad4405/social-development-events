@@ -85,7 +85,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/upcoming-events" className="hover:text-primary transition-colors">
+                                <Link href="/events" className="hover:text-primary transition-colors">
                                     Explore Events
                                 </Link>
                             </li>
@@ -108,22 +108,22 @@ export default function Footer() {
                         </h4>
                         <ul className="space-y-2.5 text-sm font-medium text-muted-foreground">
                             <li>
-                                <Link href="/upcoming-events?category=environment" className="hover:text-primary transition-colors">
+                                <Link href="/events?category=environment" className="hover:text-primary transition-colors">
                                     Environment & Tree Drive
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/upcoming-events?category=relief" className="hover:text-primary transition-colors">
+                                <Link href="/events?category=relief" className="hover:text-primary transition-colors">
                                     Relief & Blanket Drives
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/upcoming-events?category=education" className="hover:text-primary transition-colors">
+                                <Link href="/events?category=education" className="hover:text-primary transition-colors">
                                     Education & Youth Support
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/upcoming-events?category=cleanup" className="hover:text-primary transition-colors">
+                                <Link href="/events?category=cleanup" className="hover:text-primary transition-colors">
                                     Neighborhood Cleanup
                                 </Link>
                             </li>

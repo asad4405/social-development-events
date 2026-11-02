@@ -38,7 +38,7 @@ export default function Navbar() {
                                 </svg>
                             </div>
                             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-card text-card-foreground rounded-box w-52 border border-border">
-                                <li><Link href="/upcoming-events">Upcoming Events</Link></li>
+                                <li><Link href="/events">Upcoming Events</Link></li>
                             </ul>
                         </div>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal px-1 font-medium gap-1">
                             <li>
-                                <Link href="/upcoming-events" className="hover:text-primary transition-colors">Upcoming Events</Link>
+                                <Link href="/events" className="hover:text-primary transition-colors">Upcoming Events</Link>
                             </li>
                         </ul>
                     </div>

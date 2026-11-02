@@ -27,7 +27,7 @@ export default function Banner() {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
                     <Link
-                        href="/upcoming-events"
+                        href="/events"
                         className="btn btn-primary btn-md md:btn-lg gap-2 w-full sm:w-auto shadow-sm"
                     >
                         Explore Upcoming Events <ArrowRight className="w-4 h-4" />
