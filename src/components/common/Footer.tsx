@@ -90,7 +90,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/create-event" className="hover:text-primary transition-colors">
+                                <Link href="/events/create-event" className="hover:text-primary transition-colors">
                                     Host an Event
                                 </Link>
                             </li>

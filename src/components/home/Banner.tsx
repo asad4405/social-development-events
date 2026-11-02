@@ -34,7 +34,7 @@ export default function Banner() {
                     </Link>
 
                     <Link
-                        href="/create-event"
+                        href="/events/create-event"
                         className="btn btn-outline border-border hover:bg-muted text-foreground btn-md md:btn-lg gap-2 w-full sm:w-auto"
                     >
                         <PlusCircle className="w-4 h-4 text-primary" /> Create an Event

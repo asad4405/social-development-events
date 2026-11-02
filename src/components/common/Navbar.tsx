@@ -102,7 +102,7 @@ export default function Navbar() {
                                         <span className="text-xs text-muted-foreground block truncate">{user.email}</span>
                                     </li>
                                     <li>
-                                        <Link href="/create-event" className="flex items-center gap-2 py-2">
+                                        <Link href="/events/create-event" className="flex items-center gap-2 py-2">
                                             <PlusCircle className="w-4 h-4 text-primary" /> Create Event
                                         </Link>
                                     </li>
