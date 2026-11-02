@@ -112,7 +112,7 @@ export default function Navbar() {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link href="/joined-events" className="flex items-center gap-2 py-2">
+                                        <Link href="/events/joined" className="flex items-center gap-2 py-2">
                                             <Calendar className="w-4 h-4 text-primary" /> Joined Events
                                         </Link>
                                     </li>

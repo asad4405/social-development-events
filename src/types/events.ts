@@ -23,4 +23,5 @@ export interface JoinEventType {
     userEmail?: string;
     userId?: string;
     joinedAt?: string;
+    eventId: string;
 }
