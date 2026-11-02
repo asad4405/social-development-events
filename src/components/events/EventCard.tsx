@@ -10,24 +10,18 @@ interface EventCardProps {
 }
 
 export default function EventCard({ event }: EventCardProps) {
-    
     return (
         <Card className="overflow-hidden border border-border shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl bg-card flex flex-col justify-between">
             <div>
                 <div className="relative h-48 w-full overflow-hidden bg-muted">
                     {event.image && (
-                        <div className="relative h-48 w-full overflow-hidden bg-muted">
-                            <Image
-                                src={event.image}
-                                alt={event.title || "Event Image"}
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                            />
-                            <span className="absolute top-3 right-3 z-10 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full shadow">
-                                {event.category}
-                            </span>
-                        </div>
+                        <Image
+                            src={event.image}
+                            alt={event.title || "Event Image"}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                        />
                     )}
                     <span className="absolute top-3 right-3 z-10 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full shadow">
                         {event.category}

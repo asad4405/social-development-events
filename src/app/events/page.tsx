@@ -1,15 +1,44 @@
+import Link from "next/link";
 import EventCard from "@/components/events/EventCard";
-import { CalendarDays } from "lucide-react";
-import { EventType } from "../types/events";
+import EventFilters from "@/components/events/EventFilter";
+import { EventType } from "@/app/types/events";
+import { CalendarDays, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export default async function UpcomingEventsPage() {
+interface PageProps {
+    searchParams: Promise<{
+        category?: string;
+        search?: string;
+    }>;
+}
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/events`, {
-        cache: "no-store",
+export default async function EventsPage({ searchParams }: PageProps) {
+    const resolvedParams = await searchParams;
+    const currentCategory = resolvedParams.category || "All";
+    const searchQuery = resolvedParams.search || "";
+
+    let events: EventType[] = [];
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/events`, {
+            cache: "no-store",
+        });
+        events = await res.json();
+    } catch (error) {
+        console.error("Failed to fetch events:", error);
+    }
+
+    const filteredEvents = events.filter((event) => {
+        const matchesCategory =
+            currentCategory === "All" ||
+            event.category.toLowerCase() === currentCategory.toLowerCase();
+
+        const matchesSearch =
+            event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            event.location.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return matchesCategory && matchesSearch;
     });
 
-    const events = await res.json();
-    
     return (
         <div className="min-h-screen bg-background py-10 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
@@ -23,11 +52,18 @@ export default async function UpcomingEventsPage() {
                             Explore upcoming community and social impact events happening soon.
                         </p>
                     </div>
+                    <Link href="/create-event">
+                        <Button className="rounded-xl gap-2 font-semibold shadow-md">
+                            <Plus className="w-4 h-4" /> Create Event
+                        </Button>
+                    </Link>
                 </div>
 
-                {events.length > 0 ? (
+                <EventFilters />
+
+                {filteredEvents.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {events.map((event: EventType) => (
+                        {filteredEvents.map((event: EventType) => (
                             <EventCard key={event._id} event={event} />
                         ))}
                     </div>
@@ -36,9 +72,9 @@ export default async function UpcomingEventsPage() {
                         <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
                             <CalendarDays className="w-8 h-8" />
                         </div>
-                        <h3 className="text-xl font-bold font-heading text-foreground">No Upcoming Events</h3>
+                        <h3 className="text-xl font-bold font-heading text-foreground">No Events Found</h3>
                         <p className="text-sm text-muted-foreground max-w-sm">
-                            There are no upcoming events at the moment. Please check back later!
+                            No events match your selected category or search keyword. Try changing your filters!
                         </p>
                     </div>
                 )}
