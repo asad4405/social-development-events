@@ -48,8 +48,7 @@ export default function RegisterPage() {
         }
 
         toast.success("Account created successfully!");
-        // router.push("/");
-        window.location.href = "/";
+        router.push("/events");
         router.refresh();
     };
 
