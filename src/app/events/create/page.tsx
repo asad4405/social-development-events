@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useSession } from "@/lib/auth-client"; 
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 export default function CreateEventPage() {
     const router = useRouter();
@@ -41,10 +42,12 @@ export default function CreateEventPage() {
         };
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/create`, {
+            const token = await getTokenFromClient();
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/event-create`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(eventData),
             });
