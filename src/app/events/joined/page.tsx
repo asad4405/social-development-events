@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import JoinedEventCard from "@/components/events/JoinedEventCard";
 import { JoinEventType } from "@/types/events";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 export default async function JoinedEventsPage() {
     const session = await auth.api.getSession({
@@ -28,8 +29,12 @@ export default async function JoinedEventsPage() {
     let joinedEvents: JoinEventType[] = [];
 
     try {
+        const token = await getTokenFromServer();
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/joined-event/${currentUserId}`, {
             cache: "no-store",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         if (res.ok) {
