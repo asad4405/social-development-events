@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { ArrowRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ManageEventCard from "@/components/events/manage/ManageEventCard";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface EventType {
     _id: string;
@@ -37,8 +38,12 @@ export default async function ManageEventsPage() {
     let myEvents: EventType[] = [];
 
     try {
+        const token = await getTokenFromServer();
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/events/manage/${currentUserId}`, {
             cache: "no-store",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         if (res.ok) {

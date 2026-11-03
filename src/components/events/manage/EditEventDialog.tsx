@@ -13,6 +13,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface EditEventDialogProps {
     event: {
@@ -28,7 +29,7 @@ interface EditEventDialogProps {
 
 export default function EditEventDialog({ event }: EditEventDialogProps) {
     const router = useRouter();
-    const [open, setOpen] = useState(false); // ডায়ালগ কন্ট্রোল করার জন্য স্টেট
+    const [open, setOpen] = useState(false); 
 
     const handleUpdateSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -44,17 +45,19 @@ export default function EditEventDialog({ event }: EditEventDialogProps) {
         };
 
         try {
+            const token = await getTokenFromClient();
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/events/${event._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(updatedData),
             });
 
             if (res.ok) {
                 toast.success("Event updated successfully!");
-                setOpen(false); // সেভ হওয়ার পর ডায়ালগ বন্ধ হয়ে যাবে
+                setOpen(false); 
                 router.refresh();
             } else {
                 toast.error("Failed to update event.");
@@ -97,7 +100,6 @@ export default function EditEventDialog({ event }: EditEventDialogProps) {
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
-                        {/* Category Select Dropdown */}
                         <div className="space-y-1.5">
                             <label className="text-xs font-semibold text-muted-foreground uppercase">Category</label>
                             <select

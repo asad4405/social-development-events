@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Mail, Lock, LogIn, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
@@ -29,8 +29,8 @@ export default function LoginPage() {
         }
 
         toast.success("Welcome back to UnityPulse!");
-        
-        window.location.href = "/";
+        router.refresh();
+        redirect("/");
     };
 
     const handleSocialLogin = async (provider: "google" | "github") => {

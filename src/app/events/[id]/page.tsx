@@ -10,6 +10,7 @@ import OrganizerCard from "@/components/events/details/OrganizerCard";
 import VolunteersList from "@/components/events/details/VolunteersList";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 interface EventDetailsPageProps {
     params: Promise<{
@@ -40,9 +41,13 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
         const currentUserId = session?.user?.id;
 
         if (currentUserId && event) {
+            const token = await getTokenFromServer();
             const eventId = event._id;
             const volRes = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/join-event/${eventId}`, {
                 cache: "no-store",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
 
             if (volRes.ok) {

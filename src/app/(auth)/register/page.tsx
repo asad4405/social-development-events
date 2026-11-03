@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { User, Mail, Lock, Image as ImageIcon, UserCheck, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
@@ -17,7 +17,7 @@ export default function RegisterPage() {
             name: string;
             email: string;
             password: string;
-            confirmPassword: string;
+            confirmPassword?: string;
             image: string;
         };
 
@@ -35,7 +35,7 @@ export default function RegisterPage() {
             return;
         }
 
-        const { error } = await authClient.signUp.email({
+        const { data, error } = await authClient.signUp.email({
             email: user.email,
             password: user.password,
             name: user.name,
@@ -43,13 +43,28 @@ export default function RegisterPage() {
         });
 
         if (error) {
-            toast.error(error.message || "Failed to register account.");
+            toast.error(error.message || "Something went wrong!");
             return;
         }
 
-        toast.success("Account created successfully!");
-        router.push("/events");
+        if (!data) {
+            toast.error("Registration failed. Please try again.");
+            return;
+        }
+
+        const { error: signInError } = await authClient.signIn.email({
+            email: user.email,
+            password: user.password,
+        });
+
+        if (signInError) {
+            toast.error(signInError.message || "Account created, but sign-in failed. Please log in.");
+            return;
+        }
+
+        toast.success("SignUp Created Successfully!");
         router.refresh();
+        redirect("/");
     };
 
     const togglePassword = (inputId: string, eyeOpenId: string, eyeClosedId: string) => {

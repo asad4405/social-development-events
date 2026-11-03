@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useSession } from "@/lib/auth-client"; 
 import { EventType } from "@/types/events";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 interface JoinEventButtonProps {
     event: EventType;
@@ -26,10 +27,12 @@ export default function JoinEventButton({ event, isAlreadyJoined }: JoinEventBut
         }
 
         try {
+            const token = await getTokenFromClient();
             const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/join-event`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     event, 
