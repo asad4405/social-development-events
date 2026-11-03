@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌍 UnityPulse - Social Development Events (Client)
 
-## Getting Started
+Welcome to the frontend repository for **UnityPulse** — a modern, community-driven event management platform where users can discover, create, join, and track social service and development events in their local area.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🔗 Project Links
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Frontend Live Site:** [https://social-unitypulse.vercel.app](https://social-unitypulse.vercel.app)
+- **Backend Live Server:** [https://social-unitypulse-server.vercel.app](https://social-unitypulse-server.vercel.app)
+- **Server Repository:** [https://github.com/asad4405/social-development-events-server](https://github.com/asad4405/social-development-events-server)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features (5+ Bullet Points)
 
-## Learn More
+- **🔐 Secure Authentication:** Robust email/password and social login (Google/GitHub) powered by Better Auth with MongoDB Adapter and JWT.
+- **📅 Upcoming Events Discovery:** Browse upcoming social service events filtered chronologically and presented in a responsive grid layout.
+- **🙋 Interactive Event Joining:** Authenticated users can easily join or RSVP to community drives with built-in duplicate registration prevention.
+- **📊 Personalized User Dashboard:** Dedicated private routes enabling users to manage created events, update details, delete entries, and view joined events sorted by date.
+- **🌗 Theme Customization:** Fully functional light and dark mode toggling across the entire application interface.
+- **🍞 Modern Toast Notifications:** Instant, sleek user feedback utilizing Shadcn Sonner toast instead of standard browser alerts.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack & Dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript / JavaScript
+- **Styling & UI:** Tailwind CSS, DaisyUI, Shadcn UI
+- **Notifications:** Shadcn Sonner
+- **Authentication:** Better Auth (MongoDB Adapter & JWT)
+- **Deployment:** Vercel
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📡 API Endpoints Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The client application connects securely with the backend server endpoints:
+- **Public Routes:** `GET /events`, `GET /events/:id`, `GET /join-event/:eventId`
+- **Protected Routes (JWT Required):** `POST /event-create`, `GET /events/manage/:userId`, `PATCH /events/:id`, `DELETE /events/:id`, `POST /join-event`, `GET /joined-event/:userId`
+
+---
+
+## ⚙️ Environment Variables Setup
+
+Create a `.env` file in the root directory and configure the following variables:
+
+```env
+NEXT_PUBLIC_API_BASE_URL=[https://social-unitypulse-server.vercel.app](https://social-unitypulse-server.vercel.app)
+
+BETTER_AUTH_SECRET=your_better_auth_secret_here
+BETTER_AUTH_URL=[https://social-unitypulse.vercel.app](https://social-unitypulse.vercel.app)
+
+MONGODB_URL=your_mongodb_connection_string_here
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
